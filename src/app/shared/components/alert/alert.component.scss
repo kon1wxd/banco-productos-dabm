@@ -1,0 +1,64 @@
+.alert {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  position: fixed;
+  max-width: 40%;
+  right:10px;
+  top:10px;
+  
+  &.success {
+    background-color: #e0fce0;
+    border: 1px solid #52c752;
+    color: #176817;
+  }
+
+  &.error {
+    background-color: #ffe5e5;
+    border: 1px solid #ff9a9a;
+    color: #b10000;
+  }
+
+  &.warning {
+    background-color: #fff4e5;
+    border: 1px solid #ffc107;
+    color: #946200;
+  }
+
+  &.info {
+    background-color: #e6f0ff;
+    border: 1px solid #66a6ff;
+    color: #004085;
+  }
+
+  button.close-btn {
+      background: transparent;
+      border: 0;
+      font-size: 22px;
+      line-height: 1;
+      cursor:pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
+  }
+  .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    animation-name: shrink;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}

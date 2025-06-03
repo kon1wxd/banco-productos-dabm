@@ -1,0 +1,37 @@
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let col of columns" [ngClass]="{'text-center': col.center}">{{ col.label }}<ng-container *ngIf="col.desc"><span title="{{ col.desc }}"><i class="info-icon"></i></span></ng-container></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Skeleton Loading -->
+      <tr *ngIf="loading">
+        <td *ngFor="let col of columns">
+          <div class="skeleton"></div>
+        </td>
+      </tr>
+
+      <!-- Actual Data -->
+      <tr *ngFor="let row of data" [hidden]="loading">
+        <td *ngFor="let col of columns" [ngClass]="{'text-center': col.center}">
+        <ng-container *ngIf="hasCustomTemplate(col.key); else defaultTpl">
+          <ng-container
+            *ngTemplateOutlet="getTemplate(col.key); context: { $implicit: row[col.key], row: row }"
+          ></ng-container>
+        </ng-container>
+        <ng-template #defaultTpl>
+          <ng-container *ngIf="col.type === 'date'; else normalValue">
+            {{ row[col.key] | date:'dd/MM/yyyy' }}
+          </ng-container>
+          <ng-template #normalValue>
+            {{ row[col.key] }}
+          </ng-template>
+        </ng-template>
+      </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

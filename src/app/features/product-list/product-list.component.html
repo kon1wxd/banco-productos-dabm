@@ -1,0 +1,50 @@
+<app-container>
+  <div class="row">
+    <div class="col">
+      <input type="text" placeholder="Search..." [formControl]="searchControl" class="search-input" />
+    </div>
+    <div class="col text-right">
+      <button class="btn" [routerLink]="['/product']">Agregar</button>
+    </div>
+  </div>
+
+  <div class="product-list-container mt">
+    <div class="table-wrapper">
+    <app-table [columns]="columns" [data]="pagedProducts" [loading]="loading">
+      <!-- Logo slot (already exists) -->
+      <ng-template #logoTpl let-logo>
+        <img [src]="logo" alt="Logo" class="product-logo" />
+      </ng-template>
+
+      <!-- Actions slot -->
+      <ng-template #actionsTpl let-val let-row="row">
+        <div class="dropdown">
+          <button class="dropdown-toggle">⋮</button>
+          <div class="dropdown-menu">
+            <button (click)="modify(row)">Modificar</button>
+            <button (click)="requestDelete(row)">Eliminar</button>
+          </div>
+        </div>
+      </ng-template>
+    </app-table>
+
+    </div>
+
+    <div class="footer-controls">
+      <span>{{ filteredProducts.length }} Resultados</span>
+      <div class="pagination-controls">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">&#xab;</button>
+        <button *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === (i + 1)"
+          (click)="goToPage(i + 1)">
+          {{ i + 1 }}
+        </button>
+        <button (click)="nextPage()" [disabled]="totalPages === 0 || currentPage === totalPages">&#xbb;</button>
+      </div>
+      <select [formControl]="itemsPerPageControl">
+        <option *ngFor="let count of [5, 10, 20]" [value]="count">{{ count }}</option>
+      </select>
+    </div>
+  </div>
+  <app-confirm-modal [show]="showDeleteModal" message="¿Estás seguro de eliminar este producto?" (confirm)="onDeleteConfirm()" (cancel)="showDeleteModal = false">
+</app-confirm-modal>
+</app-container>

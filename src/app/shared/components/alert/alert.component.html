@@ -1,0 +1,6 @@
+<div *ngIf="alert" class="alert" [ngClass]="alert.type">
+  <span>{{ alert.message }}</span>
+  <button *ngIf="alert.closable" class="close-btn" (click)="close()">×</button>
+  <!-- Barra con duración dinámica -->
+  <div class="progress-bar" [ngStyle]="{ 'animation-duration': duration + 'ms' }"></div>
+</div>

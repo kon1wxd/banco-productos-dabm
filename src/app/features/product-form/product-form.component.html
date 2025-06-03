@@ -1,0 +1,102 @@
+<app-container>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+        <h2>Formulario de Registro</h2>
+        <!-- ID -->
+         <div class="form-grid">
+        <div>
+            <label>ID</label>
+            <input formControlName="id" (blur)="validateId()"
+                [class.invalid]="f['id'].invalid && (f['id'].touched || f['id'].dirty)" />
+            <small *ngIf="f['id'].invalid && (f['id'].touched || f['id'].dirty) && f['id']['errors']?.['required']">
+                Este campo es requerido.
+            </small>
+            <small *ngIf="f['id'].invalid && (f['id'].touched || f['id'].dirty) && f['id']['errors']?.['minlength']">
+                Mínimo 3 caracteres.
+            </small>
+            <small *ngIf="f['id'].invalid && (f['id'].touched || f['id'].dirty) && f['id']['errors']?.['maxlength']">
+                Máximo 10 caracteres.
+            </small>
+            <small *ngIf="f['id'].invalid && (f['id'].touched || f['id'].dirty) && f['id']['errors']?.['exists']">
+                ID no válido (ya existe).
+            </small>
+        </div>
+
+        <!-- Nombre -->
+        <div>
+            <label>Nombre</label>
+            <input formControlName="name"
+                [class.invalid]="f['name'].invalid && (f['name'].touched || f['name'].dirty)" />
+            <small
+                *ngIf="f['name'].invalid && (f['name'].touched || f['name'].dirty) && f['name']['errors']?.['required']">
+                Este campo es requerido.
+            </small>
+            <small
+                *ngIf="f['name'].invalid && (f['name'].touched || f['name'].dirty) && f['name']['errors']?.['minlength']">
+                Mínimo 5 caracteres.
+            </small>
+            <small
+                *ngIf="f['name'].invalid && (f['name'].touched || f['name'].dirty) && f['name']['errors']?.['maxlength']">
+                Máximo 100 caracteres.
+            </small>
+        </div>
+
+        <!-- Descripción -->
+        <div>
+            <label>Descripción</label>
+            <input formControlName="description" type="text"
+                [class.invalid]="f['description'].invalid && (f['description'].touched || f['description'].dirty)">
+            <small
+                *ngIf="f['description'].invalid && (f['description'].touched || f['description'].dirty) && f['description']['errors']?.['required']">
+                Este campo es requerido.
+            </small>
+            <small
+                *ngIf="f['description'].invalid && (f['description'].touched || f['description'].dirty) && f['description']['errors']?.['minlength']">
+                Mínimo 10 caracteres.
+            </small>
+            <small
+                *ngIf="f['description'].invalid && (f['description'].touched || f['description'].dirty) && f['description']['errors']?.['maxlength']">
+                Máximo 200 caracteres.
+            </small>
+        </div>
+
+        <!-- Logo -->
+        <div>
+            <label>Logo</label>
+            <input formControlName="logo"
+                [class.invalid]="f['logo'].invalid && (f['logo'].touched || f['logo'].dirty)" />
+            <small
+                *ngIf="f['logo'].invalid && (f['logo'].touched || f['logo'].dirty) && f['logo']['errors']?.['required']">
+                Este campo es requerido.
+            </small>
+        </div>
+
+        <!-- Fecha Liberación -->
+        <div>
+            <label>Fecha Liberación</label>
+            <input type="date" formControlName="date_release"
+                [class.invalid]="f['date_release'].invalid && (f['date_release'].touched || f['date_release'].dirty)" />
+            <small
+                *ngIf="f['date_release'].invalid && (f['date_release'].touched || f['date_release'].dirty) && f['date_release']['errors']?.['required']">
+                Este campo es requerido.
+            </small>
+        </div>
+
+        <!-- Fecha Revisión -->
+        <div>
+            <label>Fecha Revisión</label>
+            <input type="date" formControlName="date_revision"
+                [class.invalid]="f['date_revision'].invalid && (f['date_revision'].touched || f['date_revision'].dirty)" />
+            <small
+                *ngIf="f['date_revision'].invalid && (f['date_revision'].touched || f['date_revision'].dirty) && f['date_revision']['errors']?.['required']">
+                Este campo es requerido.
+            </small>
+        </div>
+        </div>
+        <!-- Botones -->
+        <div class="buttons">
+            <button class="btn secondary" type="button" (click)="onReset()">Reiniciar</button>
+            <button class="btn" type="submit" [disabled]="productForm.invalid">{{ isEditMode ? 'Guardar' : 'Enviar' }}</button>
+        </div>
+    </form>
+</app-container>

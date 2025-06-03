@@ -1,0 +1,79 @@
+.table-wrapper {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+
+    thead {
+      background-color: #f9fafc;
+
+      th {
+        padding: 2rem 3rem;
+        text-align: left;
+        font-weight: 700;
+        border-bottom: 2px solid #f3f4f8;
+        color: #313236;
+        top: 0;
+        letter-spacing: -0.36px;
+        box-shadow: inset 0px -1px #c1c7d780;
+      }
+    }
+
+    tbody {
+      td {
+        padding: 0.6rem 3rem;
+        border-bottom: 1px solid #e0e0e0;
+        vertical-align: middle;
+        font-weight: 500;
+      }
+
+      tr:hover {
+        background-color: #f5f9ff;
+      }
+    }
+  }
+}
+
+// Skeleton loader styles (unchanged)
+.skeleton {
+  height: 16px;
+  width: 100%;
+  background: linear-gradient(-90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+  background-size: 400% 400%;
+  animation: pulse 1.2s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+@keyframes pulse {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+// ✅ Responsive adjustments for phones
+@media screen and (max-width: 600px) {
+  .table-wrapper {
+    table {
+      min-width: unset; // Allow table to shrink
+
+      thead {
+        th {
+          padding: 1rem 1.5rem;
+          font-size: 0.9rem;
+        }
+      }
+
+      tbody {
+        td {
+          padding: 0.5rem 1.5rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
